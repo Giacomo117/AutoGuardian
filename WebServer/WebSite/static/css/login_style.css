@@ -1,0 +1,72 @@
+/* Reset CSS per assicurare uniformità tra i browser */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Stili per la form */
+.form-control:focus {
+    box-shadow: 0 0 0 0.1rem #060606;
+    border-color: #060606;
+}
+
+/* Stili per il pulsante */
+.btn {
+    color: white;
+    background-color: #060606 !important;
+    border-color: #060606 !important;
+    border-radius: 999px;
+    width: 95%;
+    max-width: 200px; /* Limita la larghezza massima del pulsante su dispositivi desktop */
+}
+
+/* Stili per il box utente */
+.user-box {
+    background-color: #fff;
+    width: 45%; /* Larghezza fissa su desktop */
+    border-radius: 5px;
+    margin: 10vh auto; /* Margin top e bottom 10vh, margin left e right automatici */
+    padding: 20px; /* Padding aumentato per dispositivi mobili */
+}
+
+/* Stili per il form all'interno del box utente */
+.user-box form > div {
+    margin: 10px; /* Margin uniforme tra i campi del form */
+}
+
+/* Stili per la label del file di input personalizzato */
+.custom-file-label {
+    overflow: hidden;
+}
+
+/* Stili per il messaggio di errore */
+.star {
+    color: red;
+}
+
+/* Stili per il link "Sign Up" */
+.user-box a {
+    color: #060606;
+    text-decoration: none;
+}
+
+/* Stili per il link "Sign Up" su hover */
+.user-box a:hover {
+    text-decoration: underline;
+}
+
+/* Stili per testo piccolo */
+.small {
+    font-size: small;
+}
+
+/* Media query per dispositivi con larghezza massima di 600px (ad esempio dispositivi mobili) */
+@media only screen and (max-width: 600px) {
+    .user-box {
+        width: 90%; /* Modifica la larghezza del box utente per adattarsi meglio ai dispositivi mobili */
+    }
+    .btn {
+        width: 100%; /* Pulsante a larghezza completa su dispositivi mobili */
+    }
+}

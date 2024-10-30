@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home - My Website{% endblock %}
+
+{% block content %}
+    <div class="home-content">
+        {% for vehicle in vehicles %}
+            <br>
+            <div class="card mb-3">
+                <button class="toggle-button" data-target="card-{{ vehicle.id }}">Vehicle ID: {{ vehicle.id }}</button>
+                <div id="card-{{ vehicle.id }}" class="card-content">
+                    <div id="map-{{ vehicle.id }}" style="height: 200px;"></div>
+                    <div class="card-body">
+                        <h5 class="card-title">ID: {{ vehicle.id }}</h5>
+                        <p class="card-text">
+                            boh
+                        </p>
+                        <p class="card-text"><small class="text-muted">Last updated: {{ vehicle.last_update }}</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+        {% endfor %}
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            {% for vehicle in vehicles %}
+                var map{{ vehicle.id }} = L.map('map-{{ vehicle.id }}').setView([{{ vehicle.latitude }}, {{ vehicle.longitude }}], 30);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+                }).addTo(map{{ vehicle.id }});
+                L.marker([{{ vehicle.latitude }}, {{ vehicle.longitude }}]).addTo(map{{ vehicle.id }});
+            {% endfor %}
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.toggle-button').click(function () {
+                var targetId = $(this).data('target');
+                $('#' + targetId).toggle();
+            });
+        });
+    </script>
+{% endblock %}

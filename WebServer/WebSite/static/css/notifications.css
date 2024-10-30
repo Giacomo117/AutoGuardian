@@ -1,0 +1,23 @@
+/* Stile per le notifiche recenti */
+.recent-alert {
+    animation: blink 1s infinite alternate; /* Animazione che fa lampeggiare di rosso */
+}
+
+/* Animazione per il lampeggio */
+@keyframes blink {
+    from {
+        background-color: inherit; /* Colore di sfondo predefinito */
+    }
+    to {
+        background-color: red; /* Colore di sfondo rosso */
+    }
+}
+
+.btn {
+    color: white;
+    background-color: #060606 !important;
+    border-color: #060606 !important;
+    border-radius: 999px;
+    width: 95%;
+    max-width: 200px; /* Limita la larghezza massima del pulsante su dispositivi desktop */
+}
