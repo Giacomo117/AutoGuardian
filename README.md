@@ -59,15 +59,15 @@ AutoGuardian/
 
 ```mermaid
 flowchart LR
-  MCU[(Arduino/MCU)] -- "$ ... JSON ... !" --> BR[Bridge (Python)]
-  BR -- "POST /api/vehicles, PUT /api/vehicles/{id}" --> API[Django REST API]
-  API -- ORM --> DB[(SQLite)]
-  BR -- "POST /api/alerts" --> API
-  API -- "neighbor calc, 201 if created; 200 if discarded" --> BR
-  BR -- "GET /api/neighboring-vehicles/{id}" --> API
-  BR -- "PUBLISH [ids]" --> MQ[(MQTT Broker)]
-  MQ -- "alerts topic" --> BR
-  BR -- "sendAlarm() over Serial" --> MCU
+  MCU[(Arduino/MCU)] -->|"Serial JSON frames"| BR[Bridge Python]
+  BR -->|"POST /api/vehicles<br/>PUT /api/vehicles/id"| API[Django REST API]
+  API -->|"ORM"| DB[(SQLite)]
+  BR -->|"POST /api/alerts"| API
+  API -->|"neighbor calc<br/>201 if created<br/>200 if discarded"| BR
+  BR -->|"GET /api/neighboring-vehicles/id"| API
+  BR -->|"PUBLISH neighbor ids"| MQ[(MQTT Broker)]
+  MQ -->|"alerts topic"| BR
+  BR -->|"sendAlarm over Serial"| MCU
   subgraph WebServer
     API
     DB
